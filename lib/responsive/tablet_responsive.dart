@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/services/auth.dart';
 
+import '../home/bag.dart';
 import '../home/item_list.dart';
+import 'package:flutter_application_1/home/history.dart';
 
 class TabletResponsive extends StatefulWidget {
   const TabletResponsive({super.key});
@@ -18,17 +20,22 @@ class _TabletResponsiveState extends State<TabletResponsive> {
   bool checked = false;
   @override
   Widget build(BuildContext context) {
-    // switch (selectedIndex) {
-    //   case 0:
-    //     page = ItemList();
-    //   case 1:
-    //     page = Bag();
-    //   case 2:
-    //     page = History();
-    //   case 3:
-    //     page = Profile();
-    // }
-    Widget? page;
+    Widget page = ItemList(checked: checked);
+    switch (selectedIndex) {
+      case 0:
+        page = ItemList(
+          checked: checked,
+        );
+        break;
+      case 1:
+        page = Bag();
+        break;
+      case 2:
+        page = History();
+        break;
+      default:
+        throw UnimplementedError('no widget found for ${selectedIndex}');
+    }
     return LayoutBuilder(
       builder: (context, constraints) {
         return Scaffold(
@@ -72,9 +79,7 @@ class _TabletResponsiveState extends State<TabletResponsive> {
               ),
               Expanded(
                 child: Container(
-                  child: ItemList(
-                    checked: checked,
-                  ),
+                  child: page,
                 ),
               ),
             ],
