@@ -5,6 +5,8 @@ import '../home/bag.dart';
 import '../home/item_list.dart';
 import 'package:flutter_application_1/home/history.dart';
 
+import '../home/request_page.dart';
+
 class TabletResponsive extends StatefulWidget {
   const TabletResponsive({super.key});
 
@@ -32,6 +34,9 @@ class _TabletResponsiveState extends State<TabletResponsive> {
         break;
       case 2:
         page = History();
+        break;
+      case 3:
+        page = RequestPage();
         break;
       default:
         throw UnimplementedError('no widget found for ${selectedIndex}');
@@ -72,6 +77,10 @@ class _TabletResponsiveState extends State<TabletResponsive> {
                     NavigationRailDestination(
                       icon: Icon(Icons.work_history),
                       label: Text('History'),
+                    ),
+                    NavigationRailDestination(
+                      icon: Icon(Icons.pending),
+                      label: Text('Requests'),
                     ),
                   ],
                   selectedIndex: selectedIndex,

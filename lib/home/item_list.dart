@@ -24,14 +24,17 @@ class _ItemListState extends State<ItemList> {
 
   @override
   Widget build(BuildContext context) {
-    void _showSettings(String id) {
+    void _showSettings(String id, String itemName) {
       showModalBottomSheet(
         backgroundColor: Colors.grey[350],
         context: context,
         builder: (context) {
           return Container(
             height: 700,
-            child: RequestForm(id: id),
+            child: RequestForm(
+              id: id,
+              itemName: itemName,
+            ),
           );
         },
       );
@@ -59,7 +62,7 @@ class _ItemListState extends State<ItemList> {
                     ),
                     onTap: widget.checked
                         ? () {
-                            _showSettings(doc.id);
+                            _showSettings(doc.id, doc.get('item_name'));
                           }
                         : null,
                     leading: Icon(
