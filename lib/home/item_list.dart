@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/home/request_form.dart';
 import 'package:flutter_application_1/shared/loading.dart';
 
 class ItemList extends StatefulWidget {
@@ -11,14 +12,32 @@ class ItemList extends StatefulWidget {
 }
 
 class _ItemListState extends State<ItemList> {
+  TextEditingController _controller = TextEditingController();
+  late List<Map<String, dynamic>> selectedItems = [];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _controller.text = '0';
+  }
+
   @override
   Widget build(BuildContext context) {
+    void _showSettings(String id) {
+      showModalBottomSheet(
+        backgroundColor: Colors.grey[350],
+        context: context,
+        builder: (context) {
+          return Container(
+            height: 700,
+            child: RequestForm(id: id),
+          );
+        },
+      );
+    }
+
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.black,
-        onPressed: () {},
-        child: Icon(Icons.send),
-      ),
       body: StreamBuilder(
         stream: FirebaseFirestore.instance.collection('items').snapshots(),
         builder: (context, snapshot) {
@@ -35,9 +54,12 @@ class _ItemListState extends State<ItemList> {
                 child: Card(
                   color: widget.checked ? Colors.white : Colors.grey[400],
                   child: ListTile(
+                    subtitle: Container(
+                      child: Text('${doc.get('item_quantity')}'),
+                    ),
                     onTap: widget.checked
                         ? () {
-                            print('${doc.get('item_name')}');
+                            _showSettings(doc.id);
                           }
                         : null,
                     leading: Icon(
@@ -48,61 +70,13 @@ class _ItemListState extends State<ItemList> {
                       padding: EdgeInsets.only(
                         top: 100,
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Text(
-                            '${doc.get('item_name')}',
-                            style: TextStyle(
-                              color: widget.checked
-                                  ? Colors.black
-                                  : Colors.grey[600],
-                              fontSize: 18,
-                            ),
-                          ),
-                          IconButton(
-                            color: widget.checked
-                                ? Colors.black
-                                : Colors.grey[600],
-                            iconSize: 35,
-                            onPressed: () async {
-                              DocumentSnapshot itemSnapshot =
-                                  await FirebaseFirestore.instance
-                                      .collection('items')
-                                      .doc(doc.id)
-                                      .get();
-                              int item = itemSnapshot['item_quantity'];
-                              await doc.reference
-                                  .update({'item_quantity': item - 1});
-                            },
-                            icon: Icon(Icons.remove),
-                          ),
-                          Text(
-                            '${doc.get('item_quantity')}',
-                            style: TextStyle(
-                                fontSize: 20,
-                                color: widget.checked
-                                    ? Colors.black
-                                    : Colors.grey[600]),
-                          ),
-                          IconButton(
-                            color: widget.checked
-                                ? Colors.black
-                                : Colors.grey[600],
-                            iconSize: 35,
-                            onPressed: () async {
-                              DocumentSnapshot itemSnapshot =
-                                  await FirebaseFirestore.instance
-                                      .collection('items')
-                                      .doc(doc.id)
-                                      .get();
-                              int item = itemSnapshot['item_quantity'];
-                              await doc.reference
-                                  .update({'item_quantity': item + 1});
-                            },
-                            icon: Icon(Icons.add),
-                          ),
-                        ],
+                      child: Text(
+                        '${doc.get('item_name')}',
+                        style: TextStyle(
+                          color:
+                              widget.checked ? Colors.black : Colors.grey[600],
+                          fontSize: 18,
+                        ),
                       ),
                     ),
                   ),

@@ -44,13 +44,18 @@ class _TabletResponsiveState extends State<TabletResponsive> {
               SafeArea(
                 child: NavigationRail(
                   trailing: selectedIndex == 0
-                      ? Checkbox(
-                          value: checked,
-                          onChanged: (value) {
-                            setState(() {
-                              checked = value!;
-                            });
-                          },
+                      ? Row(
+                          children: [
+                            Text('Activate'),
+                            Checkbox(
+                              value: checked,
+                              onChanged: (value) {
+                                setState(() {
+                                  checked = value!;
+                                });
+                              },
+                            ),
+                          ],
                         )
                       : null,
                   minExtendedWidth: 150,
