@@ -29,13 +29,17 @@ class _RejectedRequestsState extends State<RejectedRequests> {
             }
             return ListView(
                 children: snapshot.data!.docs.map((DocumentSnapshot doc) {
-              return ListTile(
-                title: doc.get('status') == 'REJECTED'
-                    ? Text('${doc.get('item_name_requested')}')
-                    : Text(''),
-                subtitle: doc.get('status') == 'REJECTED'
-                    ? Text('${doc.get('item_quantity_requested')}')
-                    : Text(''),
+              return Container(
+                child: doc.get('status') == 'REJECTED'
+                    ? ListTile(
+                        title: doc.get('status') == 'REJECTED'
+                            ? Text('${doc.get('item_name_requested')}')
+                            : Text(''),
+                        subtitle: doc.get('status') == 'REJECTED'
+                            ? Text('${doc.get('item_quantity_requested')}')
+                            : Text(''),
+                      )
+                    : null,
               );
             }).toList());
           },

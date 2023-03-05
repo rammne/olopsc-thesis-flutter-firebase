@@ -29,13 +29,17 @@ class _AcceptedRequestsState extends State<AcceptedRequests> {
             }
             return ListView(
                 children: snapshot.data!.docs.map((DocumentSnapshot doc) {
-              return ListTile(
-                title: doc.get('status') == 'ACCEPTED'
-                    ? Text('${doc.get('item_name_requested')}')
-                    : Text(''),
-                subtitle: doc.get('status') == 'ACCEPTED'
-                    ? Text('${doc.get('item_quantity_requested')}')
-                    : Text(''),
+              return Container(
+                child: doc.get('status') == 'ACCEPTED'
+                    ? ListTile(
+                        title: doc.get('status') == 'ACCEPTED'
+                            ? Text('${doc.get('item_name_requested')}')
+                            : null,
+                        subtitle: doc.get('status') == 'ACCEPTED'
+                            ? Text('${doc.get('item_quantity_requested')}')
+                            : null,
+                      )
+                    : null,
               );
             }).toList());
           },
