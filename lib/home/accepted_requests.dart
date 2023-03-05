@@ -45,7 +45,50 @@ class _AcceptedRequestsState extends State<AcceptedRequests> {
           },
         );
       } else {
-        return Text('...');
+        return StreamBuilder(
+          stream: FirebaseFirestore.instance
+              .collection('users')
+              .doc(FirebaseAuth.instance.currentUser!.uid)
+              .collection('requests')
+              .snapshots(),
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
+              return Text('Something went wrong');
+            } else if (snapshot.connectionState == ConnectionState.waiting) {
+              return Loading();
+            }
+            return ListView(
+                children: snapshot.data!.docs.map((DocumentSnapshot doc) {
+              return LayoutBuilder(
+                builder: (context, constraints) {
+                  return Container(
+                    child: doc.get('status') == 'ACCEPTED'
+                        ? ListTile(
+                            title: doc.get('status') == 'ACCEPTED'
+                                ? Text(
+                                    '${doc.get('item_name_requested')}',
+                                    style: constraints.maxWidth >= 600
+                                        ? TextStyle(fontSize: 25)
+                                        : TextStyle(fontSize: 20),
+                                  )
+                                : null,
+                            subtitle: doc.get('status') == 'ACCEPTED'
+                                ? Text(
+                                    '${doc.get('item_quantity_requested')}',
+                                    style: constraints.maxWidth >= 600
+                                        ? TextStyle(fontSize: 20)
+                                        : TextStyle(fontSize: 16),
+                                  )
+                                : null,
+                          )
+                        : null,
+                  );
+                },
+              );
+            }).toList());
+          },
+        );
+        ;
       }
     });
   }

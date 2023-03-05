@@ -34,10 +34,10 @@ class _RejectedRequestsState extends State<RejectedRequests> {
                     ? ListTile(
                         title: doc.get('status') == 'REJECTED'
                             ? Text('${doc.get('item_name_requested')}')
-                            : Text(''),
+                            : null,
                         subtitle: doc.get('status') == 'REJECTED'
                             ? Text('${doc.get('item_quantity_requested')}')
-                            : Text(''),
+                            : null,
                       )
                     : null,
               );
@@ -45,7 +45,46 @@ class _RejectedRequestsState extends State<RejectedRequests> {
           },
         );
       } else {
-        return Text('...');
+        return StreamBuilder(
+          stream: FirebaseFirestore.instance
+              .collection('users')
+              .doc(FirebaseAuth.instance.currentUser!.uid)
+              .collection('requests')
+              .snapshots(),
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
+              return Text('Something went wrong');
+            } else if (snapshot.connectionState == ConnectionState.waiting) {
+              return Loading();
+            }
+            return ListView(
+                children: snapshot.data!.docs.map((DocumentSnapshot doc) {
+              return Container(
+                child: doc.get('status') == 'REJECTED'
+                    ? ListTile(
+                        title: doc.get('status') == 'REJECTED'
+                            ? Text(
+                                '${doc.get('item_name_requested')}',
+                                style: constraints.maxWidth >= 600
+                                    ? TextStyle(fontSize: 25)
+                                    : TextStyle(fontSize: 20),
+                              )
+                            : null,
+                        subtitle: doc.get('status') == 'REJECTED'
+                            ? Text(
+                                '${doc.get('item_quantity_requested')}',
+                                style: constraints.maxWidth >= 600
+                                    ? TextStyle(fontSize: 20)
+                                    : TextStyle(fontSize: 16),
+                              )
+                            : null,
+                      )
+                    : null,
+              );
+            }).toList());
+          },
+        );
+        ;
       }
     });
   }

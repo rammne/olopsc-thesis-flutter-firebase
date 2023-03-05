@@ -54,15 +54,24 @@ class _HomeState extends State<Home> {
                   extended: constraints.maxWidth >= 600,
                   destinations: [
                     NavigationRailDestination(
-                      icon: Icon(Icons.inventory),
+                      icon: Icon(
+                        Icons.inventory,
+                        size: constraints.maxWidth >= 600 ? 45 : null,
+                      ),
                       label: Text('Lists'),
                     ),
                     NavigationRailDestination(
-                      icon: Icon(Icons.work_history),
+                      icon: Icon(
+                        Icons.work_history,
+                        size: constraints.maxWidth >= 600 ? 45 : null,
+                      ),
                       label: Text('History'),
                     ),
                     NavigationRailDestination(
-                      icon: Icon(Icons.pending),
+                      icon: Icon(
+                        Icons.pending,
+                        size: constraints.maxWidth >= 600 ? 45 : null,
+                      ),
                       label: Text('Requests'),
                     ),
                   ],
