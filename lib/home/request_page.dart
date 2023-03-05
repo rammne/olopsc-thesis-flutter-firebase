@@ -26,24 +26,103 @@ class _RequestPageState extends State<RequestPage> {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Loading();
         }
-        return ListView(
-          children: snapshot.data!.docs.map((DocumentSnapshot doc) {
-            return Container(
-              height: 100,
-              child: Card(
-                child: ListTile(
-                  leading: Icon(
-                    Icons.image,
-                    size: 50,
+        return LayoutBuilder(builder: (context, constraints) {
+          // mobile
+          if (constraints.maxWidth < 400) {
+            return ListView(
+              children: snapshot.data!.docs.map((DocumentSnapshot doc) {
+                return Container(
+                  height: 80,
+                  child: Card(
+                    child: ListTile(
+                      trailing: IconButton(
+                        color: Colors.red,
+                        onPressed: () async {
+                          await FirebaseFirestore.instance
+                              .collection('users')
+                              .doc(FirebaseAuth.instance.currentUser!.uid)
+                              .collection('requests')
+                              .doc(doc.id)
+                              .delete();
+                        },
+                        icon: Icon(Icons.cancel),
+                      ),
+                      leading: Icon(
+                        Icons.image,
+                        size: 50,
+                      ),
+                      title: Text('${doc.get('item_name_requested')}'),
+                      subtitle: Text(
+                          '${doc.get('item_quantity_requested')} --- ${doc.get('status')}'),
+                    ),
                   ),
-                  title: Text('${doc.get('item_name_requested')}'),
-                  subtitle: Text(
-                      '${doc.get('item_quantity_requested')} --- ${doc.get('status')}'),
-                ),
-              ),
+                );
+              }).toList(),
             );
-          }).toList(),
-        );
+          } else if (constraints.maxWidth <= 800) {
+            return ListView(
+              children: snapshot.data!.docs.map((DocumentSnapshot doc) {
+                return Container(
+                  height: 100,
+                  child: Card(
+                    child: ListTile(
+                      trailing: IconButton(
+                        color: Colors.red,
+                        onPressed: () async {
+                          await FirebaseFirestore.instance
+                              .collection('users')
+                              .doc(FirebaseAuth.instance.currentUser!.uid)
+                              .collection('requests')
+                              .doc(doc.id)
+                              .delete();
+                        },
+                        icon: Icon(Icons.cancel),
+                      ),
+                      leading: Icon(
+                        Icons.image,
+                        size: 50,
+                      ),
+                      title: Text('${doc.get('item_name_requested')}'),
+                      subtitle: Text(
+                          '${doc.get('item_quantity_requested')} --- ${doc.get('status')}'),
+                    ),
+                  ),
+                );
+              }).toList(),
+            );
+          } else {
+            return ListView(
+              children: snapshot.data!.docs.map((DocumentSnapshot doc) {
+                return Container(
+                  height: 100,
+                  child: Card(
+                    child: ListTile(
+                      trailing: IconButton(
+                        color: Colors.red,
+                        onPressed: () async {
+                          await FirebaseFirestore.instance
+                              .collection('users')
+                              .doc(FirebaseAuth.instance.currentUser!.uid)
+                              .collection('requests')
+                              .doc(doc.id)
+                              .delete();
+                        },
+                        icon: Icon(Icons.cancel),
+                      ),
+                      leading: Icon(
+                        Icons.image,
+                        size: 50,
+                      ),
+                      title: Text('${doc.get('item_name_requested')}'),
+                      subtitle: Text(
+                          '${doc.get('item_quantity_requested')} --- ${doc.get('status')}'),
+                    ),
+                  ),
+                );
+              }).toList(),
+            );
+          }
+        });
       },
     );
   }

@@ -34,6 +34,7 @@ class _RequestFormState extends State<RequestForm> {
                 SizedBox(
                   width: 50,
                   child: TextFormField(
+                    keyboardType: TextInputType.number,
                     onChanged: (value) {
                       setState(() {
                         val = int.parse(value);

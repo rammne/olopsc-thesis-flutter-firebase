@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/services/auth.dart';
-
-import '../home/bag.dart';
-import '../home/item_list.dart';
+import 'item_list.dart';
 import 'package:flutter_application_1/home/history.dart';
 
-import '../home/request_page.dart';
+import 'request_page.dart';
 
-class TabletResponsive extends StatefulWidget {
-  const TabletResponsive({super.key});
+class Home extends StatefulWidget {
+  const Home({super.key});
 
   @override
-  State<TabletResponsive> createState() => _TabletResponsiveState();
+  State<Home> createState() => _HomeState();
 }
 
-class _TabletResponsiveState extends State<TabletResponsive> {
+class _HomeState extends State<Home> {
   AuthService _auth = AuthService();
 
   // states
@@ -30,12 +28,9 @@ class _TabletResponsiveState extends State<TabletResponsive> {
         );
         break;
       case 1:
-        page = Bag();
-        break;
-      case 2:
         page = History();
         break;
-      case 3:
+      case 2:
         page = RequestPage();
         break;
       default:
@@ -69,10 +64,6 @@ class _TabletResponsiveState extends State<TabletResponsive> {
                     NavigationRailDestination(
                       icon: Icon(Icons.inventory),
                       label: Text('Lists'),
-                    ),
-                    NavigationRailDestination(
-                      icon: Icon(Icons.shopping_bag),
-                      label: Text('Bag'),
                     ),
                     NavigationRailDestination(
                       icon: Icon(Icons.work_history),

@@ -2,12 +2,12 @@ import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/home/home.dart';
 import 'package:flutter_application_1/services/auth.dart';
 
 import '../responsive/desktop_responsive.dart';
 import '../responsive/mobile_responsive.dart';
 import '../responsive/responsive_layout.dart';
-import '../responsive/tablet_responsive.dart';
 
 class Verification extends StatefulWidget {
   const Verification({super.key});
@@ -56,11 +56,7 @@ class _VerificationState extends State<Verification> {
   @override
   Widget build(BuildContext context) {
     return isEmailVerified
-        ? ResponsiveLayout(
-            desktopDevice: DesktopResponsive(),
-            mobileDevice: MobileResponsive(),
-            tabletDevice: TabletResponsive(),
-          )
+        ? Home()
         : Scaffold(
             body: Padding(
               padding: const EdgeInsets.only(top: 550),

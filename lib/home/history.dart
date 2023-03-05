@@ -10,6 +10,33 @@ class History extends StatefulWidget {
 class _HistoryState extends State<History> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return SafeArea(
+      child: DefaultTabController(
+        length: 2,
+        child: Scaffold(
+          body: Column(
+            children: [
+              TabBar(
+                labelColor: Colors.black,
+                tabs: [
+                  Tab(
+                    text: 'Accepted',
+                  ),
+                  Tab(
+                    text: 'Rejected',
+                  ),
+                ],
+              ),
+              Expanded(
+                child: TabBarView(children: [
+                  Icon(Icons.check),
+                  Icon(Icons.cancel),
+                ]),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
