@@ -4,9 +4,6 @@ import 'package:flutter_application_1/home/request_form.dart';
 import 'package:flutter_application_1/shared/loading.dart';
 
 class ItemList extends StatefulWidget {
-  bool checked;
-  ItemList({required this.checked});
-
   @override
   State<ItemList> createState() => _ItemListState();
 }
@@ -58,16 +55,14 @@ class _ItemListState extends State<ItemList> {
                   return SizedBox(
                     height: 150,
                     child: Card(
-                      color: widget.checked ? Colors.white : Colors.grey[400],
+                      color: Colors.white,
                       child: ListTile(
                         subtitle: Container(
                           child: Text('${doc.get('item_quantity')}'),
                         ),
-                        onTap: widget.checked
-                            ? () {
-                                _showSettings(doc.id, doc.get('item_name'));
-                              }
-                            : null,
+                        onTap: () {
+                          _showSettings(doc.id, doc.get('item_name'));
+                        },
                         leading: Icon(
                           Icons.image,
                           size: 100,
@@ -79,9 +74,7 @@ class _ItemListState extends State<ItemList> {
                           child: Text(
                             '${doc.get('item_name')}',
                             style: TextStyle(
-                              color: widget.checked
-                                  ? Colors.black
-                                  : Colors.grey[600],
+                              color: Colors.black,
                               fontSize: 18,
                             ),
                           ),
@@ -109,32 +102,28 @@ class _ItemListState extends State<ItemList> {
               return ListView(
                 children: snapshot.data!.docs.map((DocumentSnapshot doc) {
                   return SizedBox(
-                    height: 250,
+                    height: 150,
                     child: Card(
-                      color: widget.checked ? Colors.white : Colors.grey[400],
+                      color: Colors.white,
                       child: ListTile(
                         subtitle: Container(
                           child: Text('${doc.get('item_quantity')}'),
                         ),
-                        onTap: widget.checked
-                            ? () {
-                                _showSettings(doc.id, doc.get('item_name'));
-                              }
-                            : null,
+                        onTap: () {
+                          _showSettings(doc.id, doc.get('item_name'));
+                        },
                         leading: Icon(
                           Icons.image,
-                          size: 200,
+                          size: 125,
                         ),
                         title: Container(
                           padding: EdgeInsets.only(
-                            top: 100,
+                            top: 50,
                           ),
                           child: Text(
                             '${doc.get('item_name')}',
                             style: TextStyle(
-                              color: widget.checked
-                                  ? Colors.black
-                                  : Colors.grey[600],
+                              color: Colors.black,
                               fontSize: 18,
                             ),
                           ),
@@ -161,32 +150,28 @@ class _ItemListState extends State<ItemList> {
               return ListView(
                 children: snapshot.data!.docs.map((DocumentSnapshot doc) {
                   return SizedBox(
-                    height: 250,
+                    height: 150,
                     child: Card(
-                      color: widget.checked ? Colors.white : Colors.grey[400],
+                      color: Colors.white,
                       child: ListTile(
                         subtitle: Container(
                           child: Text('${doc.get('item_quantity')}'),
                         ),
-                        onTap: widget.checked
-                            ? () {
-                                _showSettings(doc.id, doc.get('item_name'));
-                              }
-                            : null,
+                        onTap: () {
+                          _showSettings(doc.id, doc.get('item_name'));
+                        },
                         leading: Icon(
                           Icons.image,
-                          size: 200,
+                          size: 125,
                         ),
                         title: Container(
                           padding: EdgeInsets.only(
-                            top: 100,
+                            top: 50,
                           ),
                           child: Text(
                             '${doc.get('item_name')}',
                             style: TextStyle(
-                              color: widget.checked
-                                  ? Colors.black
-                                  : Colors.grey[600],
+                              color: Colors.black,
                               fontSize: 18,
                             ),
                           ),

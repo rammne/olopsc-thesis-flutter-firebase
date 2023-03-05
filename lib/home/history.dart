@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/home/accepted_requests.dart';
+import 'package:flutter_application_1/home/rejected_requests.dart';
 
 class History extends StatefulWidget {
   const History({super.key});
@@ -29,8 +31,8 @@ class _HistoryState extends State<History> {
               ),
               Expanded(
                 child: TabBarView(children: [
-                  Icon(Icons.check),
-                  Icon(Icons.cancel),
+                  AcceptedRequests(),
+                  RejectedRequests(),
                 ]),
               ),
             ],
