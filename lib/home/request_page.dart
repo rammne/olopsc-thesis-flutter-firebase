@@ -33,29 +33,31 @@ class _RequestPageState extends State<RequestPage> {
               children: snapshot.data!.docs.map((DocumentSnapshot doc) {
                 return Container(
                   height: 80,
-                  child: Card(
-                    child: ListTile(
-                      trailing: IconButton(
-                        color: Colors.red,
-                        onPressed: () async {
-                          await FirebaseFirestore.instance
-                              .collection('users')
-                              .doc(FirebaseAuth.instance.currentUser!.uid)
-                              .collection('requests')
-                              .doc(doc.id)
-                              .delete();
-                        },
-                        icon: Icon(Icons.cancel),
-                      ),
-                      leading: Icon(
-                        Icons.image,
-                        size: 50,
-                      ),
-                      title: Text('${doc.get('item_name_requested')}'),
-                      subtitle: Text(
-                          '${doc.get('item_quantity_requested')} --- ${doc.get('status')}'),
-                    ),
-                  ),
+                  child: doc.get('status') == 'PENDING'
+                      ? Card(
+                          child: ListTile(
+                            trailing: IconButton(
+                              color: Colors.red,
+                              onPressed: () async {
+                                await FirebaseFirestore.instance
+                                    .collection('users')
+                                    .doc(FirebaseAuth.instance.currentUser!.uid)
+                                    .collection('requests')
+                                    .doc(doc.id)
+                                    .delete();
+                              },
+                              icon: Icon(Icons.cancel),
+                            ),
+                            leading: Icon(
+                              Icons.image,
+                              size: 50,
+                            ),
+                            title: Text('${doc.get('item_name_requested')}'),
+                            subtitle: Text(
+                                '${doc.get('item_quantity_requested')} --- ${doc.get('status')}'),
+                          ),
+                        )
+                      : null,
                 );
               }).toList(),
             );
@@ -64,29 +66,31 @@ class _RequestPageState extends State<RequestPage> {
               children: snapshot.data!.docs.map((DocumentSnapshot doc) {
                 return Container(
                   height: 100,
-                  child: Card(
-                    child: ListTile(
-                      trailing: IconButton(
-                        color: Colors.red,
-                        onPressed: () async {
-                          await FirebaseFirestore.instance
-                              .collection('users')
-                              .doc(FirebaseAuth.instance.currentUser!.uid)
-                              .collection('requests')
-                              .doc(doc.id)
-                              .delete();
-                        },
-                        icon: Icon(Icons.cancel),
-                      ),
-                      leading: Icon(
-                        Icons.image,
-                        size: 50,
-                      ),
-                      title: Text('${doc.get('item_name_requested')}'),
-                      subtitle: Text(
-                          '${doc.get('item_quantity_requested')} --- ${doc.get('status')}'),
-                    ),
-                  ),
+                  child: doc.get('status') == 'PENDING'
+                      ? Card(
+                          child: ListTile(
+                            trailing: IconButton(
+                              color: Colors.red,
+                              onPressed: () async {
+                                await FirebaseFirestore.instance
+                                    .collection('users')
+                                    .doc(FirebaseAuth.instance.currentUser!.uid)
+                                    .collection('requests')
+                                    .doc(doc.id)
+                                    .delete();
+                              },
+                              icon: Icon(Icons.cancel),
+                            ),
+                            leading: Icon(
+                              Icons.image,
+                              size: 50,
+                            ),
+                            title: Text('${doc.get('item_name_requested')}'),
+                            subtitle: Text(
+                                '${doc.get('item_quantity_requested')} --- ${doc.get('status')}'),
+                          ),
+                        )
+                      : null,
                 );
               }).toList(),
             );
@@ -95,29 +99,31 @@ class _RequestPageState extends State<RequestPage> {
               children: snapshot.data!.docs.map((DocumentSnapshot doc) {
                 return Container(
                   height: 100,
-                  child: Card(
-                    child: ListTile(
-                      trailing: IconButton(
-                        color: Colors.red,
-                        onPressed: () async {
-                          await FirebaseFirestore.instance
-                              .collection('users')
-                              .doc(FirebaseAuth.instance.currentUser!.uid)
-                              .collection('requests')
-                              .doc(doc.id)
-                              .delete();
-                        },
-                        icon: Icon(Icons.cancel),
-                      ),
-                      leading: Icon(
-                        Icons.image,
-                        size: 50,
-                      ),
-                      title: Text('${doc.get('item_name_requested')}'),
-                      subtitle: Text(
-                          '${doc.get('item_quantity_requested')} --- ${doc.get('status')}'),
-                    ),
-                  ),
+                  child: doc.get('status') == 'PENDING'
+                      ? Card(
+                          child: ListTile(
+                            trailing: IconButton(
+                              color: Colors.red,
+                              onPressed: () async {
+                                await FirebaseFirestore.instance
+                                    .collection('users')
+                                    .doc(FirebaseAuth.instance.currentUser!.uid)
+                                    .collection('requests')
+                                    .doc(doc.id)
+                                    .delete();
+                              },
+                              icon: Icon(Icons.cancel),
+                            ),
+                            leading: Icon(
+                              Icons.image,
+                              size: 50,
+                            ),
+                            title: Text('${doc.get('item_name_requested')}'),
+                            subtitle: Text(
+                                '${doc.get('item_quantity_requested')} --- ${doc.get('status')}'),
+                          ),
+                        )
+                      : null,
                 );
               }).toList(),
             );
