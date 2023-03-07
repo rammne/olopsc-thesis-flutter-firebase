@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/shared/loading.dart';
+import 'package:intl/intl.dart';
 
 class RequestForm extends StatefulWidget {
   String id;
@@ -60,10 +61,12 @@ class _RequestFormState extends State<RequestForm> {
                           .collection('users')
                           .doc(FirebaseAuth.instance.currentUser!.uid)
                           .collection('requests')
-                          .doc(widget.id)
+                          .doc()
                           .set({
+                        'item_id': widget.id,
                         'item_name_requested': widget.itemName,
                         'item_quantity_requested': val,
+                        'date_time': FieldValue.serverTimestamp(),
                         'status': 'PENDING'
                       });
                     }
