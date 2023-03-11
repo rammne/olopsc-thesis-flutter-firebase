@@ -31,13 +31,16 @@ class _RejectedRequestsState extends State<RejectedRequests> {
                 children: snapshot.data!.docs.map((DocumentSnapshot doc) {
               return Container(
                 child: doc.get('status') == 'REJECTED'
-                    ? ListTile(
-                        title: doc.get('status') == 'REJECTED'
-                            ? Text('${doc.get('item_name_requested')}')
-                            : null,
-                        subtitle: doc.get('status') == 'REJECTED'
-                            ? Text('${doc.get('item_quantity_requested')}')
-                            : null,
+                    ? Card(
+                        color: Colors.grey[350],
+                        child: ListTile(
+                          title: doc.get('status') == 'REJECTED'
+                              ? Text('${doc.get('item_name_requested')}')
+                              : null,
+                          subtitle: doc.get('status') == 'REJECTED'
+                              ? Text('${doc.get('item_quantity_requested')}')
+                              : null,
+                        ),
                       )
                     : null,
               );
@@ -61,23 +64,26 @@ class _RejectedRequestsState extends State<RejectedRequests> {
                 children: snapshot.data!.docs.map((DocumentSnapshot doc) {
               return Container(
                 child: doc.get('status') == 'REJECTED'
-                    ? ListTile(
-                        title: doc.get('status') == 'REJECTED'
-                            ? Text(
-                                '${doc.get('item_name_requested')}',
-                                style: constraints.maxWidth >= 600
-                                    ? TextStyle(fontSize: 25)
-                                    : TextStyle(fontSize: 20),
-                              )
-                            : null,
-                        subtitle: doc.get('status') == 'REJECTED'
-                            ? Text(
-                                '${doc.get('item_quantity_requested')}',
-                                style: constraints.maxWidth >= 600
-                                    ? TextStyle(fontSize: 20)
-                                    : TextStyle(fontSize: 16),
-                              )
-                            : null,
+                    ? Card(
+                        color: Colors.grey[350],
+                        child: ListTile(
+                          title: doc.get('status') == 'REJECTED'
+                              ? Text(
+                                  '${doc.get('item_name_requested')}',
+                                  style: constraints.maxWidth >= 600
+                                      ? TextStyle(fontSize: 25)
+                                      : TextStyle(fontSize: 20),
+                                )
+                              : null,
+                          subtitle: doc.get('status') == 'REJECTED'
+                              ? Text(
+                                  '${doc.get('item_quantity_requested')}',
+                                  style: constraints.maxWidth >= 600
+                                      ? TextStyle(fontSize: 20)
+                                      : TextStyle(fontSize: 16),
+                                )
+                              : null,
+                        ),
                       )
                     : null,
               );

@@ -32,6 +32,7 @@ class _SignUpState extends State<SignUp> {
   String confirmPassword = '';
   String full_name = '';
   String programLevel = 'Tourism 1st';
+  String groupNumber = '';
 
   @override
   Widget build(BuildContext context) {
@@ -100,6 +101,26 @@ class _SignUpState extends State<SignUp> {
                           SizedBox(
                             height: 50,
                           ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 130),
+                            child: TextFormField(
+                              textCapitalization: TextCapitalization.characters,
+                              validator: (value) => value!.contains('GROUP')
+                                  ? null
+                                  : 'Group number required',
+                              onChanged: (value) {
+                                setState(() {
+                                  groupNumber = value;
+                                });
+                              },
+                              decoration:
+                                  InputDecoration(hintText: 'Group Number'),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 50,
+                          ),
                           // -------------------------------------------------------------------
                           Padding(
                             padding:
@@ -129,6 +150,7 @@ class _SignUpState extends State<SignUp> {
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 30),
                                     child: TextFormField(
+                                      obscureText: true,
                                       validator: (value) => value!.length > 6
                                           ? null
                                           : 'Password must be 6+ chars long',
@@ -147,6 +169,7 @@ class _SignUpState extends State<SignUp> {
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 30),
                                     child: TextFormField(
+                                      obscureText: true,
                                       validator: (value) => value == password
                                           ? null
                                           : "Password didn't match",
@@ -181,12 +204,13 @@ class _SignUpState extends State<SignUp> {
                                               email,
                                               password,
                                               full_name,
-                                              programLevel);
+                                              programLevel,
+                                              groupNumber);
                                       if (result == null) {
                                         error = 'Invalid';
                                       }
+                                      Navigator.pop(context);
                                     }
-                                    Navigator.pop(context);
                                   }
                                 : null,
                             child: Container(
@@ -276,8 +300,22 @@ class _SignUpState extends State<SignUp> {
                               ),
                             ],
                           ),
-                          SizedBox(
-                            height: 25,
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 140),
+                            child: TextFormField(
+                              textCapitalization: TextCapitalization.characters,
+                              validator: (value) => value!.contains('GROUP')
+                                  ? null
+                                  : 'Group number required',
+                              onChanged: (value) {
+                                setState(() {
+                                  groupNumber = value;
+                                });
+                              },
+                              decoration:
+                                  InputDecoration(hintText: 'Group Number'),
+                            ),
                           ),
                           // -------------------------------------------------------------------
                           Padding(
@@ -295,14 +333,12 @@ class _SignUpState extends State<SignUp> {
                             ),
                           ),
                           SizedBox(
-                            height: 25,
-                          ),
-                          SizedBox(
                               width: 300,
                               child: Padding(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 30),
                                 child: TextFormField(
+                                  obscureText: true,
                                   validator: (value) => value!.length > 6
                                       ? null
                                       : 'Password must be 6+ chars long',
@@ -321,6 +357,7 @@ class _SignUpState extends State<SignUp> {
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 30),
                                 child: TextFormField(
+                                  obscureText: true,
                                   validator: (value) => value == password
                                       ? null
                                       : "Password didn't match",
@@ -353,12 +390,13 @@ class _SignUpState extends State<SignUp> {
                                               email,
                                               password,
                                               full_name,
-                                              programLevel);
+                                              programLevel,
+                                              groupNumber);
                                       if (result == null) {
                                         error = 'Invalid';
                                       }
+                                      Navigator.pop(context);
                                     }
-                                    Navigator.pop(context);
                                   }
                                 : null,
                             child: Container(

@@ -16,7 +16,7 @@ class AuthService {
 
   //sign up
   Future signUpWithEmailAndPassword(String email, String password,
-      String full_name, String programLevel) async {
+      String full_name, String programLevel, String groupNumber) async {
     try {
       UserCredential result = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
@@ -24,6 +24,7 @@ class AuthService {
       await FirebaseFirestore.instance.collection('users').doc(user!.uid).set({
         'full_name': full_name,
         'program': programLevel,
+        'group': groupNumber,
       });
     } catch (e) {
       print(e.toString());

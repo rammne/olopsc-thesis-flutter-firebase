@@ -36,6 +36,7 @@ class _RequestPageState extends State<RequestPage> {
                       ? Container(
                           height: 80,
                           child: Card(
+                            color: Colors.grey[350],
                             child: ListTile(
                               trailing: IconButton(
                                 color: Colors.red,
@@ -72,6 +73,7 @@ class _RequestPageState extends State<RequestPage> {
                       ? Container(
                           height: 100,
                           child: Card(
+                            color: Colors.grey[350],
                             child: ListTile(
                               trailing: IconButton(
                                 color: Colors.red,
@@ -108,6 +110,7 @@ class _RequestPageState extends State<RequestPage> {
                       ? Container(
                           height: 100,
                           child: Card(
+                            color: Colors.grey[350],
                             child: ListTile(
                               trailing: IconButton(
                                 color: Colors.red,

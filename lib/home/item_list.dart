@@ -55,7 +55,7 @@ class _ItemListState extends State<ItemList> {
                   return SizedBox(
                     height: 150,
                     child: Card(
-                      color: Colors.white,
+                      color: Colors.grey[350],
                       child: ListTile(
                         subtitle: Container(
                           child: Text('${doc.get('item_quantity')}'),
@@ -104,7 +104,7 @@ class _ItemListState extends State<ItemList> {
                   return SizedBox(
                     height: 150,
                     child: Card(
-                      color: Colors.white,
+                      color: Colors.grey[350],
                       child: ListTile(
                         subtitle: Container(
                           child: Text('${doc.get('item_quantity')}'),
@@ -152,7 +152,7 @@ class _ItemListState extends State<ItemList> {
                   return SizedBox(
                     height: 150,
                     child: Card(
-                      color: Colors.white,
+                      color: Colors.grey[350],
                       child: ListTile(
                         subtitle: Container(
                           child: Text('${doc.get('item_quantity')}'),
