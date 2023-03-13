@@ -46,44 +46,44 @@ class _ItemListState extends State<ItemList> {
             builder: (context, snapshot) {
               if (snapshot.hasError) {
                 return Text('Something went wrong');
-              }
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return Loading();
-              }
-              return ListView(
-                children: snapshot.data!.docs.map((DocumentSnapshot doc) {
-                  return SizedBox(
-                    height: 150,
-                    child: Card(
-                      color: Colors.grey[350],
-                      child: ListTile(
-                        subtitle: Container(
-                          child: Text('${doc.get('item_quantity')}'),
-                        ),
-                        onTap: () {
-                          _showSettings(doc.id, doc.get('item_name'));
-                        },
-                        leading: Icon(
-                          Icons.image,
-                          size: 100,
-                        ),
-                        title: Container(
-                          padding: EdgeInsets.only(
-                            top: 50,
-                          ),
-                          child: Text(
-                            '${doc.get('item_name')}',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 18,
+              } else {
+                return ListView(
+                  children: snapshot.hasData
+                      ? snapshot.data!.docs.map((DocumentSnapshot doc) {
+                          return SizedBox(
+                            height: 150,
+                            child: Card(
+                              color: Colors.grey[350],
+                              child: ListTile(
+                                subtitle: Container(
+                                  child: Text('${doc.get('item_quantity')}'),
+                                ),
+                                onTap: () {
+                                  _showSettings(doc.id, doc.get('item_name'));
+                                },
+                                leading: Icon(
+                                  Icons.image,
+                                  size: 100,
+                                ),
+                                title: Container(
+                                  padding: EdgeInsets.only(
+                                    top: 50,
+                                  ),
+                                  child: Text(
+                                    '${doc.get('item_name')}',
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  );
-                }).toList(),
-              );
+                          );
+                        }).toList()
+                      : [CircularProgressIndicator()],
+                );
+              }
             },
           ),
         );
@@ -95,44 +95,44 @@ class _ItemListState extends State<ItemList> {
             builder: (context, snapshot) {
               if (snapshot.hasError) {
                 return Text('Something went wrong');
-              }
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return Loading();
-              }
-              return ListView(
-                children: snapshot.data!.docs.map((DocumentSnapshot doc) {
-                  return SizedBox(
-                    height: 150,
-                    child: Card(
-                      color: Colors.grey[350],
-                      child: ListTile(
-                        subtitle: Container(
-                          child: Text('${doc.get('item_quantity')}'),
-                        ),
-                        onTap: () {
-                          _showSettings(doc.id, doc.get('item_name'));
-                        },
-                        leading: Icon(
-                          Icons.image,
-                          size: 125,
-                        ),
-                        title: Container(
-                          padding: EdgeInsets.only(
-                            top: 50,
-                          ),
-                          child: Text(
-                            '${doc.get('item_name')}',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 18,
+              } else {
+                return ListView(
+                  children: snapshot.hasData
+                      ? snapshot.data!.docs.map((DocumentSnapshot doc) {
+                          return SizedBox(
+                            height: 150,
+                            child: Card(
+                              color: Colors.grey[350],
+                              child: ListTile(
+                                subtitle: Container(
+                                  child: Text('${doc.get('item_quantity')}'),
+                                ),
+                                onTap: () {
+                                  _showSettings(doc.id, doc.get('item_name'));
+                                },
+                                leading: Icon(
+                                  Icons.image,
+                                  size: 125,
+                                ),
+                                title: Container(
+                                  padding: EdgeInsets.only(
+                                    top: 50,
+                                  ),
+                                  child: Text(
+                                    '${doc.get('item_name')}',
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  );
-                }).toList(),
-              );
+                          );
+                        }).toList()
+                      : [CircularProgressIndicator()],
+                );
+              }
             },
           ),
         );
@@ -143,44 +143,44 @@ class _ItemListState extends State<ItemList> {
             builder: (context, snapshot) {
               if (snapshot.hasError) {
                 return Text('Something went wrong');
-              }
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return Loading();
-              }
-              return ListView(
-                children: snapshot.data!.docs.map((DocumentSnapshot doc) {
-                  return SizedBox(
-                    height: 150,
-                    child: Card(
-                      color: Colors.grey[350],
-                      child: ListTile(
-                        subtitle: Container(
-                          child: Text('${doc.get('item_quantity')}'),
-                        ),
-                        onTap: () {
-                          _showSettings(doc.id, doc.get('item_name'));
-                        },
-                        leading: Icon(
-                          Icons.image,
-                          size: 125,
-                        ),
-                        title: Container(
-                          padding: EdgeInsets.only(
-                            top: 50,
-                          ),
-                          child: Text(
-                            '${doc.get('item_name')}',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 18,
+              } else {
+                return ListView(
+                  children: snapshot.hasData
+                      ? snapshot.data!.docs.map((DocumentSnapshot doc) {
+                          return SizedBox(
+                            height: 150,
+                            child: Card(
+                              color: Colors.grey[350],
+                              child: ListTile(
+                                subtitle: Container(
+                                  child: Text('${doc.get('item_quantity')}'),
+                                ),
+                                onTap: () {
+                                  _showSettings(doc.id, doc.get('item_name'));
+                                },
+                                leading: Icon(
+                                  Icons.image,
+                                  size: 125,
+                                ),
+                                title: Container(
+                                  padding: EdgeInsets.only(
+                                    top: 50,
+                                  ),
+                                  child: Text(
+                                    '${doc.get('item_name')}',
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  );
-                }).toList(),
-              );
+                          );
+                        }).toList()
+                      : [CircularProgressIndicator()],
+                );
+              }
             },
           ),
         );

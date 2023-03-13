@@ -32,7 +32,7 @@ class _SignUpState extends State<SignUp> {
   String confirmPassword = '';
   String full_name = '';
   String programLevel = 'Tourism 1st';
-  String groupNumber = '';
+  String studentNumber = '';
 
   @override
   Widget build(BuildContext context) {
@@ -105,17 +105,16 @@ class _SignUpState extends State<SignUp> {
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 130),
                             child: TextFormField(
-                              textCapitalization: TextCapitalization.characters,
-                              validator: (value) => value!.contains('GROUP')
+                              validator: (value) => value!.isNotEmpty
                                   ? null
-                                  : 'Group number required',
+                                  : 'Student Number required',
                               onChanged: (value) {
                                 setState(() {
-                                  groupNumber = value;
+                                  studentNumber = value;
                                 });
                               },
                               decoration:
-                                  InputDecoration(hintText: 'Group Number'),
+                                  InputDecoration(hintText: 'Student Number'),
                             ),
                           ),
                           SizedBox(
@@ -205,7 +204,7 @@ class _SignUpState extends State<SignUp> {
                                               password,
                                               full_name,
                                               programLevel,
-                                              groupNumber);
+                                              studentNumber);
                                       if (result == null) {
                                         error = 'Invalid';
                                       }
@@ -304,17 +303,16 @@ class _SignUpState extends State<SignUp> {
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 140),
                             child: TextFormField(
-                              textCapitalization: TextCapitalization.characters,
-                              validator: (value) => value!.contains('GROUP')
+                              validator: (value) => value!.isNotEmpty
                                   ? null
-                                  : 'Group number required',
+                                  : 'Student number required',
                               onChanged: (value) {
                                 setState(() {
-                                  groupNumber = value;
+                                  studentNumber = value;
                                 });
                               },
                               decoration:
-                                  InputDecoration(hintText: 'Group Number'),
+                                  InputDecoration(hintText: 'Student Number'),
                             ),
                           ),
                           // -------------------------------------------------------------------
@@ -391,7 +389,7 @@ class _SignUpState extends State<SignUp> {
                                               password,
                                               full_name,
                                               programLevel,
-                                              groupNumber);
+                                              studentNumber);
                                       if (result == null) {
                                         error = 'Invalid';
                                       }

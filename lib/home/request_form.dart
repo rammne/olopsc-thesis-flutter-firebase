@@ -38,10 +38,15 @@ class _RequestFormState extends State<RequestForm> {
                     keyboardType: TextInputType.number,
                     onChanged: (value) {
                       setState(() {
-                        val = int.parse(value);
+                        try {
+                          val = int.parse(value);
+                        } catch (e) {
+                          print(e.toString());
+                        }
                       });
                     },
-                    validator: (value) => value!.isNotEmpty ? null : '',
+                    validator: (value) =>
+                        value!.isNotEmpty || value != String ? null : '',
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                     ),

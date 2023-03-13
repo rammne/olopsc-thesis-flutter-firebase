@@ -16,15 +16,16 @@ class AuthService {
 
   //sign up
   Future signUpWithEmailAndPassword(String email, String password,
-      String full_name, String programLevel, String groupNumber) async {
+      String full_name, String programLevel, String studentNumber) async {
     try {
       UserCredential result = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
       User? user = result.user;
       await FirebaseFirestore.instance.collection('users').doc(user!.uid).set({
         'full_name': full_name,
+        'email': email,
         'program': programLevel,
-        'group': groupNumber,
+        'student_number': studentNumber,
       });
     } catch (e) {
       print(e.toString());
