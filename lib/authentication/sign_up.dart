@@ -14,14 +14,14 @@ class _SignUpState extends State<SignUp> {
   final _formKey = GlobalKey<FormState>();
 
   var items = [
-    'Tourism 1st',
-    'Tourism 2nd',
-    'Tourism 3rd',
-    'Tourism 4th',
-    'Hospitality 1st',
-    'Hospitality 2nd',
-    'Hospitality 3rd',
-    'Hospitality 4th',
+    'BSTM 1st year',
+    'BSTM 2nd year',
+    'BSTM 3rd year',
+    'BSTM 4th year',
+    'BSHM 1st year',
+    'BSHM 2nd year',
+    'BSHM 3rd year',
+    'BSHM 4th year',
   ];
 
   // states
@@ -31,7 +31,7 @@ class _SignUpState extends State<SignUp> {
   String password = '';
   String confirmPassword = '';
   String full_name = '';
-  String programLevel = 'Tourism 1st';
+  String programLevel = 'BSTM 1st year';
   String studentNumber = '';
 
   @override
@@ -198,6 +198,7 @@ class _SignUpState extends State<SignUp> {
                             onTap: populated
                                 ? () async {
                                     if (_formKey.currentState!.validate()) {
+                                      Navigator.pop(context);
                                       dynamic result = await _auth
                                           .signUpWithEmailAndPassword(
                                               email,
@@ -208,7 +209,6 @@ class _SignUpState extends State<SignUp> {
                                       if (result == null) {
                                         error = 'Invalid';
                                       }
-                                      Navigator.pop(context);
                                     }
                                   }
                                 : null,
@@ -319,9 +319,10 @@ class _SignUpState extends State<SignUp> {
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 75),
                             child: TextFormField(
-                              validator: (value) => value!.contains('@')
-                                  ? null
-                                  : 'OLOPSC email required',
+                              validator: (value) =>
+                                  value!.contains('@olopsc.edu.ph')
+                                      ? null
+                                      : 'OLOPSC email required',
                               onChanged: (value) {
                                 setState(() {
                                   email = value;
@@ -383,6 +384,7 @@ class _SignUpState extends State<SignUp> {
                             onTap: populated
                                 ? () async {
                                     if (_formKey.currentState!.validate()) {
+                                      Navigator.pop(context);
                                       dynamic result = await _auth
                                           .signUpWithEmailAndPassword(
                                               email,
@@ -393,7 +395,6 @@ class _SignUpState extends State<SignUp> {
                                       if (result == null) {
                                         error = 'Invalid';
                                       }
-                                      Navigator.pop(context);
                                     }
                                   }
                                 : null,

@@ -81,7 +81,7 @@ class _ItemListState extends State<ItemList> {
                             ),
                           );
                         }).toList()
-                      : [CircularProgressIndicator()],
+                      : [],
                 );
               }
             },
@@ -130,7 +130,7 @@ class _ItemListState extends State<ItemList> {
                             ),
                           );
                         }).toList()
-                      : [CircularProgressIndicator()],
+                      : [],
                 );
               }
             },
@@ -178,7 +178,7 @@ class _ItemListState extends State<ItemList> {
                             ),
                           );
                         }).toList()
-                      : [CircularProgressIndicator()],
+                      : [],
                 );
               }
             },
