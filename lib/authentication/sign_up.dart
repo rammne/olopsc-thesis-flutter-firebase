@@ -45,8 +45,7 @@ class _SignUpState extends State<SignUp> {
           // tablet
           if (constraints.minWidth > 600) {
             return Wrap(children: [
-              Container(
-                color: Colors.grey[350],
+              SizedBox(
                 height: 800,
                 child: Form(
                     key: _formKey,
@@ -217,8 +216,8 @@ class _SignUpState extends State<SignUp> {
                               margin: EdgeInsets.symmetric(horizontal: 30),
                               decoration: BoxDecoration(
                                   color: populated
-                                      ? Color.fromARGB(255, 3, 50, 88)
-                                      : Colors.grey[300],
+                                      ? Colors.blue[900]
+                                      : Colors.blue[200],
                                   borderRadius: BorderRadius.circular(15)),
                               child: Center(
                                 child: Text(
@@ -246,8 +245,7 @@ class _SignUpState extends State<SignUp> {
             // mobile
           } else if (constraints.maxWidth <= 600) {
             return Wrap(children: [
-              Container(
-                color: Colors.grey[350],
+              SizedBox(
                 height: 600,
                 child: Form(
                     key: _formKey,
@@ -403,8 +401,8 @@ class _SignUpState extends State<SignUp> {
                               margin: EdgeInsets.symmetric(horizontal: 30),
                               decoration: BoxDecoration(
                                   color: populated
-                                      ? Color.fromARGB(255, 3, 50, 88)
-                                      : Colors.grey[300],
+                                      ? Colors.blue[900]
+                                      : Colors.blue[200],
                                   borderRadius: BorderRadius.circular(15)),
                               child: Center(
                                 child: Text(

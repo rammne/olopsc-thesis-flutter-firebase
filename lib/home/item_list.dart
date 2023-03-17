@@ -23,10 +23,16 @@ class _ItemListState extends State<ItemList> {
   Widget build(BuildContext context) {
     void _showSettings(String id, String itemName) {
       showModalBottomSheet(
-        backgroundColor: Colors.grey[350],
+        backgroundColor: Colors.blue[100],
         context: context,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(30),
+            topRight: Radius.circular(30),
+          ),
+        ),
         builder: (context) {
-          return Container(
+          return SizedBox(
             height: 700,
             child: RequestForm(
               id: id,
@@ -51,9 +57,10 @@ class _ItemListState extends State<ItemList> {
                   children: snapshot.hasData
                       ? snapshot.data!.docs.map((DocumentSnapshot doc) {
                           return SizedBox(
-                            height: 150,
+                            height: 100,
                             child: Card(
-                              color: Colors.grey[350],
+                              elevation: 6,
+                              color: Colors.blue[100],
                               child: ListTile(
                                 subtitle: Container(
                                   child: Text('${doc.get('item_quantity')}'),
@@ -63,11 +70,11 @@ class _ItemListState extends State<ItemList> {
                                 },
                                 leading: Icon(
                                   Icons.image,
-                                  size: 100,
+                                  size: 75,
                                 ),
                                 title: Container(
                                   padding: EdgeInsets.only(
-                                    top: 50,
+                                    top: 25,
                                   ),
                                   child: Text(
                                     '${doc.get('item_name')}',
@@ -102,7 +109,8 @@ class _ItemListState extends State<ItemList> {
                           return SizedBox(
                             height: 150,
                             child: Card(
-                              color: Colors.grey[350],
+                              elevation: 6,
+                              color: Colors.blue[100],
                               child: ListTile(
                                 subtitle: Container(
                                   child: Text('${doc.get('item_quantity')}'),
@@ -112,7 +120,7 @@ class _ItemListState extends State<ItemList> {
                                 },
                                 leading: Icon(
                                   Icons.image,
-                                  size: 125,
+                                  size: 100,
                                 ),
                                 title: Container(
                                   padding: EdgeInsets.only(
@@ -150,7 +158,7 @@ class _ItemListState extends State<ItemList> {
                           return SizedBox(
                             height: 150,
                             child: Card(
-                              color: Colors.grey[350],
+                              color: Color(0xFFBBDEFB),
                               child: ListTile(
                                 subtitle: Container(
                                   child: Text('${doc.get('item_quantity')}'),

@@ -35,7 +35,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               ),
               Text(
                 'Enter you OLOPSC gmail',
-                style: TextStyle(color: Colors.grey[600]),
+                style: TextStyle(color: Colors.blue[900]),
               ),
               SizedBox(
                 height: 50,
@@ -90,9 +90,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     ),
                   ),
                   decoration: BoxDecoration(
-                    color: populated
-                        ? Color.fromARGB(255, 3, 50, 88)
-                        : Colors.grey,
+                    color: populated ? Colors.blue[900] : Colors.blue[200],
                     borderRadius: BorderRadius.circular(15),
                   ),
                 ),

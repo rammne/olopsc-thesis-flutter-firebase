@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_application_1/wrapper.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'firebase_options.dart';
 
 void main() async {
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -12,7 +15,7 @@ void main() async {
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
       statusBarIconBrightness: Brightness.dark,
-      statusBarColor: Colors.grey[350],
+      statusBarColor: Colors.blue[100],
     ),
   );
   runApp(const MyApp());
@@ -26,15 +29,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         navigationRailTheme:
-            NavigationRailThemeData(backgroundColor: Colors.grey[350]),
+            NavigationRailThemeData(backgroundColor: Colors.blue[100]),
         iconTheme: IconThemeData(color: Colors.black),
         iconButtonTheme: IconButtonThemeData(
           style: ButtonStyle(
             iconColor: MaterialStateProperty.all(Colors.black),
           ),
         ),
-        appBarTheme: AppBarTheme(backgroundColor: Colors.grey[350]),
-        scaffoldBackgroundColor: Colors.grey[350],
+        appBarTheme: AppBarTheme(backgroundColor: Colors.blue[100]),
+        scaffoldBackgroundColor: Colors.blue[100],
       ),
       debugShowCheckedModeBanner: false,
       home: Wrapper(),

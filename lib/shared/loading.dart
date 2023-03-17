@@ -12,7 +12,7 @@ class _LoadingState extends State<Loading> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.grey[350],
+      color: Colors.blue[100],
       child: Center(
         child: SpinKitCircle(
           color: Color(Colors.blue.shade900.value),

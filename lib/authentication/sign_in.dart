@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/authentication/sign_up.dart';
 import 'package:flutter_application_1/services/auth.dart';
 import 'package:flutter_application_1/shared/loading.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import '../constants/shared.dart';
 import 'forgot_password.dart';
 
@@ -18,11 +19,28 @@ class _SignInState extends State<SignIn> {
   String error = '';
   bool populated = false;
 
+  @override
+  void initState() {
+    super.initState();
+    initialization();
+  }
+
+  void initialization() async {
+    FlutterNativeSplash.remove();
+  }
+
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     void _showSignUp() {
       showModalBottomSheet(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(30),
+            topRight: Radius.circular(30),
+          ),
+        ),
+        backgroundColor: Colors.blue[100],
         isScrollControlled: true,
         useSafeArea: true,
         context: context,
@@ -154,8 +172,8 @@ class _SignInState extends State<SignIn> {
                               margin: EdgeInsets.symmetric(horizontal: 30),
                               decoration: BoxDecoration(
                                   color: populated
-                                      ? Color.fromARGB(255, 3, 50, 88)
-                                      : Colors.grey[300],
+                                      ? Colors.blue[900]
+                                      : Colors.blue[200],
                                   borderRadius: BorderRadius.circular(15)),
                               child: Center(
                                 child: Text(
@@ -347,8 +365,8 @@ class _SignInState extends State<SignIn> {
                               margin: EdgeInsets.symmetric(horizontal: 30),
                               decoration: BoxDecoration(
                                   color: populated
-                                      ? Color.fromARGB(255, 3, 50, 88)
-                                      : Colors.grey[300],
+                                      ? Colors.blue[900]
+                                      : Colors.blue[200],
                                   borderRadius: BorderRadius.circular(15)),
                               child: Center(
                                 child: Text(

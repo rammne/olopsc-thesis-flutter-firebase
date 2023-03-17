@@ -39,10 +39,19 @@ dependencies:
   cloud_firestore: ^4.4.3
   flutter_spinkit: ^5.1.0
   intl: ^0.17.0
+  flutter_native_splash: ^2.2.19
+
+
+flutter_native_splash:
+  color: "#BBDEFB"
+  image: lib\images\reserve.png
+  branding: lib\images\zhenna.png
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  
+  flutter_launcher_icons: "^0.12.0"
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -53,6 +62,12 @@ dev_dependencies:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
+
+flutter_icons:
+  image_path: "lib/images/reserve.png"
+  android: true
+  ios: true
+  background_color: "#BBDEFB"
 
 # The following section is specific to Flutter packages.
 flutter:

@@ -32,7 +32,8 @@ class _RejectedRequestsState extends State<RejectedRequests> {
               return Container(
                 child: doc.get('status') == 'REJECTED'
                     ? Card(
-                        color: Colors.grey[350],
+                        elevation: 3,
+                        color: Colors.blue[100],
                         child: ListTile(
                           title: doc.get('status') == 'REJECTED'
                               ? Text('${doc.get('item_name_requested')}')
@@ -65,7 +66,8 @@ class _RejectedRequestsState extends State<RejectedRequests> {
               return Container(
                 child: doc.get('status') == 'REJECTED'
                     ? Card(
-                        color: Colors.grey[350],
+                        elevation: 3,
+                        color: Colors.blue[100],
                         child: ListTile(
                           title: doc.get('status') == 'REJECTED'
                               ? Text(
