@@ -59,6 +59,7 @@ class _ItemListState extends State<ItemList> {
 
   Widget _itemListBuilder(DocumentSnapshot itemData) {
     return Card(
+      color: Colors.blue[100],
       elevation: 3,
       child: ListTile(
         onTap: () {
