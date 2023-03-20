@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/home/request_form.dart';
-import 'package:flutter_application_1/shared/loading.dart';
+import 'package:flutter_application_1/home/show_settings.dart';
 
 class ItemList extends StatefulWidget {
   @override
@@ -39,19 +39,20 @@ class _ItemListState extends State<ItemList> {
               _listKey.currentState?.insertItem(_itemList.length - 1);
             });
           });
-        } else if (change.type == DocumentChangeType.removed) {
-          ft = ft.then((_) {
-            return Future.delayed(const Duration(milliseconds: 250), () {
-              int index = _itemList
-                  .indexWhere((item) => item.key == Key(change.doc.id));
-              if (index != -1) {
-                _itemList.removeAt(index);
-                _listKey.currentState
-                    ?.removeItem(index, (context, animation) => Container());
-              }
-            });
-          });
         }
+        // else if (change.type == DocumentChangeType.removed) {
+        //   ft = ft.then((_) {
+        //     return Future.delayed(const Duration(milliseconds: 250), () {
+        //       int index = _itemList
+        //           .indexWhere((item) => item.key == Key(change.doc.id));
+        //       if (index != -1) {
+        //         _itemList.removeAt(index);
+        //         _listKey.currentState
+        //             ?.removeItem(index, (context, animation) => Container());
+        //       }
+        //     });
+        //   });
+        // }
       });
     });
   }
@@ -60,10 +61,24 @@ class _ItemListState extends State<ItemList> {
     return Card(
       elevation: 3,
       child: ListTile(
-        onTap: () {},
-        leading: const Icon(
-          Icons.image,
-          size: 45,
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ShowSettings(
+                  id: itemData.id,
+                  itemName: itemData['item_name'],
+                  itemQuantity: itemData['item_quantity']),
+            ),
+          );
+        },
+        leading: Hero(
+          tag: itemData['item_name'],
+          child: const Icon(
+            Icons.image,
+            size: 45,
+            color: Colors.black,
+          ),
         ),
         title: Text(
           '${itemData['item_name']} (${itemData['item_quantity']})',
@@ -77,27 +92,27 @@ class _ItemListState extends State<ItemList> {
   Widget build(BuildContext context) {
     screenHeight = MediaQuery.of(context).size.height;
     screenWidth = MediaQuery.of(context).size.width;
-    void _showSettings(String id, String itemName) {
-      showModalBottomSheet(
-        backgroundColor: Colors.blue[100],
-        context: context,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(30),
-            topRight: Radius.circular(30),
-          ),
-        ),
-        builder: (context) {
-          return SizedBox(
-            height: 700,
-            child: RequestForm(
-              id: id,
-              itemName: itemName,
-            ),
-          );
-        },
-      );
-    }
+    // void _showSettings(String id, String itemName) {
+    //   showModalBottomSheet(
+    //     backgroundColor: Colors.blue[100],
+    //     context: context,
+    //     shape: const RoundedRectangleBorder(
+    //       borderRadius: BorderRadius.only(
+    //         topLeft: Radius.circular(30),
+    //         topRight: Radius.circular(30),
+    //       ),
+    //     ),
+    //     builder: (context) {
+    //       return SizedBox(
+    //         height: 700,
+    //         child: RequestForm(
+    //           id: id,
+    //           itemName: itemName,
+    //         ),
+    //       );
+    //     },
+    //   );
+    // }
 
     // Tween<Offset> _offset =
     //     Tween(begin: const Offset(1, 0), end: const Offset(0, 0));
