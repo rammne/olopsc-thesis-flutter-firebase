@@ -19,7 +19,7 @@ class _RejectedRequestsState extends State<RejectedRequests> {
           stream: FirebaseFirestore.instance
               .collection('users')
               .doc(FirebaseAuth.instance.currentUser!.uid)
-              .collection('requests')
+              .collection('rejected_requests')
               .snapshots(),
           builder: (context, snapshot) {
             if (snapshot.hasError) {
@@ -29,21 +29,13 @@ class _RejectedRequestsState extends State<RejectedRequests> {
             }
             return ListView(
                 children: snapshot.data!.docs.map((DocumentSnapshot doc) {
-              return Container(
-                child: doc.get('status') == 'REJECTED'
-                    ? Card(
-                        elevation: 3,
-                        color: Colors.blue[100],
-                        child: ListTile(
-                          title: doc.get('status') == 'REJECTED'
-                              ? Text('${doc.get('item_name_requested')}')
-                              : null,
-                          subtitle: doc.get('status') == 'REJECTED'
-                              ? Text('${doc.get('item_quantity_requested')}')
-                              : null,
-                        ),
-                      )
-                    : null,
+              return Card(
+                elevation: 3,
+                color: Colors.blue[100],
+                child: ListTile(
+                  title: Text('${doc.get('item_name_rejected')}'),
+                  subtitle: Text('${doc.get('item_quantity_rejected')}'),
+                ),
               );
             }).toList());
           },
@@ -63,31 +55,23 @@ class _RejectedRequestsState extends State<RejectedRequests> {
             }
             return ListView(
                 children: snapshot.data!.docs.map((DocumentSnapshot doc) {
-              return Container(
-                child: doc.get('status') == 'REJECTED'
-                    ? Card(
-                        elevation: 3,
-                        color: Colors.blue[100],
-                        child: ListTile(
-                          title: doc.get('status') == 'REJECTED'
-                              ? Text(
-                                  '${doc.get('item_name_requested')}',
-                                  style: constraints.maxWidth >= 600
-                                      ? TextStyle(fontSize: 25)
-                                      : TextStyle(fontSize: 20),
-                                )
-                              : null,
-                          subtitle: doc.get('status') == 'REJECTED'
-                              ? Text(
-                                  '${doc.get('item_quantity_requested')}',
-                                  style: constraints.maxWidth >= 600
-                                      ? TextStyle(fontSize: 20)
-                                      : TextStyle(fontSize: 16),
-                                )
-                              : null,
-                        ),
-                      )
-                    : null,
+              return Card(
+                elevation: 3,
+                color: Colors.blue[100],
+                child: ListTile(
+                  title: Text(
+                    '${doc.get('item_name_rejected')}',
+                    style: constraints.maxWidth >= 600
+                        ? TextStyle(fontSize: 25)
+                        : TextStyle(fontSize: 20),
+                  ),
+                  subtitle: Text(
+                    '${doc.get('item_quantity_rejected')}',
+                    style: constraints.maxWidth >= 600
+                        ? TextStyle(fontSize: 20)
+                        : TextStyle(fontSize: 16),
+                  ),
+                ),
               );
             }).toList());
           },

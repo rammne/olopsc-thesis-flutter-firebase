@@ -65,9 +65,8 @@ class _RequestFormState extends State<RequestForm> {
                       await FirebaseFirestore.instance
                           .collection('users')
                           .doc(FirebaseAuth.instance.currentUser!.uid)
-                          .collection('requests')
-                          .doc()
-                          .set({
+                          .collection('pending_requests')
+                          .add({
                         'item_id': widget.id,
                         'item_name_requested': widget.itemName,
                         'item_quantity_requested': val,

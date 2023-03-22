@@ -38,7 +38,7 @@ class _AcceptedRequestsState extends State<AcceptedRequests> {
           stream: FirebaseFirestore.instance
               .collection('users')
               .doc(FirebaseAuth.instance.currentUser!.uid)
-              .collection('requests')
+              .collection('accepted_requests')
               .snapshots(),
           builder: (context, snapshot) {
             if (snapshot.hasError) {
@@ -48,31 +48,23 @@ class _AcceptedRequestsState extends State<AcceptedRequests> {
             }
             return ListView(
                 children: snapshot.data!.docs.map((DocumentSnapshot doc) {
-              return Container(
-                child: doc.get('status') == 'ACCEPTED'
-                    ? Card(
-                        elevation: 3,
-                        color: Colors.blue[100],
-                        child: ListTile(
-                          trailing: IconButton(
-                            onPressed: () {
-                              try {
-                                _showSettings(doc.get('remarks'));
-                              } catch (e) {
-                                _showSettings('No remarks');
-                              }
-                            },
-                            icon: Icon(Icons.mail),
-                          ),
-                          title: doc.get('status') == 'ACCEPTED'
-                              ? Text('${doc.get('item_name_requested')}')
-                              : null,
-                          subtitle: doc.get('status') == 'ACCEPTED'
-                              ? Text('${doc.get('item_quantity_requested')}')
-                              : null,
-                        ),
-                      )
-                    : null,
+              return Card(
+                elevation: 3,
+                color: Colors.blue[100],
+                child: ListTile(
+                  trailing: IconButton(
+                    onPressed: () {
+                      try {
+                        _showSettings(doc.get('remarks'));
+                      } catch (e) {
+                        _showSettings('No remarks');
+                      }
+                    },
+                    icon: Icon(Icons.mail),
+                  ),
+                  title: Text('${doc.get('item_name_accepted')}'),
+                  subtitle: Text('${doc.get('item_quantity_accepted')}'),
+                ),
               );
             }).toList());
           },
