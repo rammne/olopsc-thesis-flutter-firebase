@@ -13,6 +13,7 @@ class _ItemListState extends State<ItemList> {
   double screenHeight = 0;
   double screenWidth = 0;
   bool startAnimation = false;
+  String itemNameQuery = '';
   final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
   final List<Widget> _itemList = [];
 
@@ -32,7 +33,8 @@ class _ItemListState extends State<ItemList> {
     _itemStream.listen((QuerySnapshot data) {
       // ignore: avoid_function_literals_in_foreach_calls
       data.docChanges.forEach((change) {
-        if (change.type == DocumentChangeType.added) {
+        if (change.type == DocumentChangeType.added ||
+            change.type == DocumentChangeType.modified) {
           ft = ft.then((_) {
             return Future.delayed(const Duration(milliseconds: 250), () {
               _itemList.add(_itemListBuilder(change.doc));
@@ -77,9 +79,10 @@ class _ItemListState extends State<ItemList> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) => ShowSettings(
-                                    id: itemData.id,
+                                    itemId: itemData.id,
                                     itemName: itemData['item_name'],
-                                    itemQuantity: itemData['item_quantity']),
+                                    availableItems:
+                                        itemData['available_items'] ?? 0),
                               ),
                             );
                           }
@@ -93,7 +96,7 @@ class _ItemListState extends State<ItemList> {
                       ),
                     ),
                     title: Text(
-                      '${itemData['item_name']} (${itemData['item_quantity']})',
+                      '${itemData['item_name']} (${itemData['available_items'] ?? '0'})',
                       style: const TextStyle(
                           fontWeight: FontWeight.w600, fontSize: 16),
                     ),
@@ -134,21 +137,46 @@ class _ItemListState extends State<ItemList> {
 
     // Tween<Offset> _offset =
     //     Tween(begin: const Offset(1, 0), end: const Offset(0, 0));
-    return AnimatedList(
-      key: _listKey,
-      padding: const EdgeInsets.only(top: 50),
-      initialItemCount: _itemList.length,
-      itemBuilder: (context, index, animation) {
-        return SlideTransition(
-          position: animation.drive(
-            Tween(
-              begin: const Offset(1, 0),
-              end: const Offset(0, 0),
+    return Column(
+      children: [
+        SafeArea(
+          child: SizedBox(
+            width: screenWidth / 1.5,
+            child: TextField(
+              decoration: InputDecoration(
+                hintText: 'Item Name...',
+                icon: const Icon(Icons.search),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(50),
+                ),
+              ),
+              onChanged: (value) {
+                setState(() {
+                  itemNameQuery = value;
+                });
+              },
             ),
           ),
-          child: _itemList[index],
-        );
-      },
+        ),
+        Expanded(
+          child: AnimatedList(
+            key: _listKey,
+            padding: const EdgeInsets.only(top: 50),
+            initialItemCount: _itemList.length,
+            itemBuilder: (context, index, animation) {
+              return SlideTransition(
+                position: animation.drive(
+                  Tween(
+                    begin: const Offset(1, 0),
+                    end: const Offset(0, 0),
+                  ),
+                ),
+                child: _itemList[index],
+              );
+            },
+          ),
+        ),
+      ],
     );
   }
 }

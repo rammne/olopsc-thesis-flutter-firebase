@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/home/request_form.dart';
 
 class ShowSettings extends StatefulWidget {
-  String id;
+  String itemId;
   String itemName;
-  int itemQuantity;
+  int availableItems;
   ShowSettings(
-      {required this.id, required this.itemName, required this.itemQuantity});
+      {required this.itemId,
+      required this.itemName,
+      required this.availableItems});
 
   @override
   State<ShowSettings> createState() => _ShowSettingsState();
@@ -32,8 +34,9 @@ class _ShowSettingsState extends State<ShowSettings> {
           return SizedBox(
               height: 700,
               child: RequestForm(
-                id: widget.id,
+                id: widget.itemId,
                 itemName: widget.itemName,
+                availableItems: widget.availableItems,
               ));
         },
       );
@@ -65,7 +68,7 @@ class _ShowSettingsState extends State<ShowSettings> {
               '${widget.itemName}',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
             ),
-            subtitle: Text('${widget.itemQuantity}'),
+            subtitle: Text('${widget.availableItems}'),
             trailing: IconButton(
               onPressed: () {
                 _onSettingsTap();

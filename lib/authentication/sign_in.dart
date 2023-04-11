@@ -155,6 +155,8 @@ class _SignInState extends State<SignIn> {
                           GestureDetector(
                             onTap: populated
                                 ? () async {
+                                    FocusManager.instance.primaryFocus
+                                        ?.unfocus();
                                     if (_formKey.currentState!.validate()) {
                                       dynamic result = await _auth
                                           .signInWithEmailAndPassword(

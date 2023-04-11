@@ -26,7 +26,7 @@ class AuthService {
         List<String> caseSearchList = [];
         String temp = "";
         for (int i = 0; i < studentNumber.length; i++) {
-          temp = temp + studentNumber[i];
+          temp = temp + studentNumber[i]; // can be temp += studentNumber[i]
           caseSearchList.add(temp);
         }
         return caseSearchList;

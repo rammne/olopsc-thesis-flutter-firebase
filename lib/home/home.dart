@@ -18,6 +18,7 @@ class _HomeState extends State<Home> {
   // states
   int selectedIndex = 0;
   bool checked = true;
+  bool navigationExtend = true;
   @override
   Widget build(BuildContext context) {
     Widget page = ItemList();
@@ -32,7 +33,10 @@ class _HomeState extends State<Home> {
         page = RequestPage();
         break;
       case 3:
-        AuthService().signOut();
+        _auth.signOut();
+        break;
+      case 4:
+        navigationExtend = !navigationExtend;
         break;
       default:
         throw UnimplementedError('no widget found for ${selectedIndex}');
@@ -44,35 +48,46 @@ class _HomeState extends State<Home> {
             children: [
               SafeArea(
                 child: NavigationRail(
-                  trailing: IconButton(
-                    icon: Icon(Icons.logout),
-                    onPressed: () {
-                      AuthService().signOut();
-                    },
-                  ),
+                  // trailing: IconButton(
+                  //   icon: Icon(Icons.logout),
+                  //   onPressed: () {
+                  //     AuthService().signOut();
+                  //   },
+                  // ),
                   minExtendedWidth: 150,
-                  extended: constraints.maxWidth >= 600,
+                  extended: navigationExtend,
                   destinations: [
                     NavigationRailDestination(
                       icon: Icon(
-                        Icons.inventory,
+                        Icons.list_rounded,
                         size: constraints.maxWidth >= 600 ? 45 : null,
                       ),
                       label: Text('Lists'),
                     ),
                     NavigationRailDestination(
                       icon: Icon(
-                        Icons.work_history,
+                        Icons.history,
                         size: constraints.maxWidth >= 600 ? 45 : null,
                       ),
                       label: Text('History'),
                     ),
                     NavigationRailDestination(
                       icon: Icon(
-                        Icons.pending,
+                        Icons.pending_outlined,
                         size: constraints.maxWidth >= 600 ? 45 : null,
                       ),
                       label: Text('Requests'),
+                    ),
+                    NavigationRailDestination(
+                      padding: EdgeInsets.only(top: constraints.maxHeight / 2),
+                      icon: Icon(Icons.logout_rounded),
+                      label: Text('Logout'),
+                    ),
+                    NavigationRailDestination(
+                      icon: navigationExtend
+                          ? Icon(Icons.arrow_back_ios_new_rounded)
+                          : Icon(Icons.arrow_forward_ios_rounded),
+                      label: Text(''),
                     ),
                   ],
                   selectedIndex: selectedIndex,

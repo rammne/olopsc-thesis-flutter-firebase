@@ -59,7 +59,8 @@ class _VerificationState extends State<Verification> {
         ? Home()
         : Scaffold(
             body: Padding(
-              padding: const EdgeInsets.only(top: 550),
+              padding:
+                  EdgeInsets.only(top: MediaQuery.of(context).size.height / 2),
               child: Center(
                 child: Column(
                   children: [

@@ -7,7 +7,9 @@ import 'package:intl/intl.dart';
 class RequestForm extends StatefulWidget {
   String id;
   String itemName;
-  RequestForm({required this.id, required this.itemName});
+  int availableItems;
+  RequestForm(
+      {required this.id, required this.itemName, required this.availableItems});
 
   @override
   State<RequestForm> createState() => _RequestFormState();
@@ -60,7 +62,8 @@ class _RequestFormState extends State<RequestForm> {
                     backgroundColor: MaterialStateProperty.all(Colors.black),
                   ),
                   onPressed: () async {
-                    if (_formKey.currentState!.validate()) {
+                    if (_formKey.currentState!.validate() &&
+                        val! < widget.availableItems) {
                       Navigator.pop(context);
                       await FirebaseFirestore.instance
                           .collection('users')
@@ -70,6 +73,19 @@ class _RequestFormState extends State<RequestForm> {
                         'item_id': widget.id,
                         'item_name_requested': widget.itemName,
                         'item_quantity_requested': val,
+                        'date_time': FieldValue.serverTimestamp(),
+                        'status': 'PENDING'
+                      });
+                    } else {
+                      Navigator.pop(context);
+                      await FirebaseFirestore.instance
+                          .collection('users')
+                          .doc(FirebaseAuth.instance.currentUser!.uid)
+                          .collection('pending_requests')
+                          .add({
+                        'item_id': widget.id,
+                        'item_name_requested': widget.itemName,
+                        'item_quantity_requested': widget.availableItems,
                         'date_time': FieldValue.serverTimestamp(),
                         'status': 'PENDING'
                       });
