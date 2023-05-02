@@ -193,10 +193,6 @@ class _ItemListState extends State<ItemList> {
                                           ? Colors.blue[100]
                                           : Colors.grey[200],
                                       child: ListTile(
-                                        subtitle: Container(
-                                          child: Text(
-                                              '${doc.get('available_items')}'),
-                                        ),
                                         onTap: docStatus.get('status')
                                             ? () {
                                                 Navigator.push(
