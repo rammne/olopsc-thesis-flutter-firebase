@@ -69,14 +69,13 @@ class _ShowSettingsState extends State<ShowSettings> {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
             ),
             subtitle: Text('${widget.availableItems}'),
-            trailing: IconButton(
+            trailing: ElevatedButton(
+              style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Colors.black)),
               onPressed: () {
                 _onSettingsTap();
               },
-              icon: Icon(
-                Icons.add,
-                color: Colors.black,
-              ),
+              child: Text('Request Item'),
             ),
           ),
           Expanded(

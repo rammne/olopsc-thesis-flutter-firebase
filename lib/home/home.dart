@@ -79,7 +79,6 @@ class _HomeState extends State<Home> {
                       label: Text('Requests'),
                     ),
                     NavigationRailDestination(
-                      padding: EdgeInsets.only(top: constraints.maxHeight / 2),
                       icon: Icon(Icons.logout_rounded),
                       label: Text('Logout'),
                     ),
