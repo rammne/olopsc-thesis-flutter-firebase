@@ -153,7 +153,7 @@ class _ItemListState extends State<ItemList> {
               ),
               onChanged: (value) {
                 setState(() {
-                  itemNameQuery = value;
+                  itemNameQuery = value.toLowerCase();
                 });
               },
             ),
@@ -162,7 +162,12 @@ class _ItemListState extends State<ItemList> {
         Expanded(
             child: Scaffold(
           body: StreamBuilder(
-            stream: FirebaseFirestore.instance.collection('items').snapshots(),
+            stream: itemNameQuery != '' && itemNameQuery != null
+                ? FirebaseFirestore.instance
+                    .collection('items')
+                    .where('searchable_item_name', arrayContains: itemNameQuery)
+                    .snapshots()
+                : FirebaseFirestore.instance.collection('items').snapshots(),
             builder: (context, snapshot) {
               if (snapshot.hasError) {
                 return Text('Something went wrong');
